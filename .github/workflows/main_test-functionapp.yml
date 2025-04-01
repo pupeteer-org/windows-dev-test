@@ -33,6 +33,7 @@ jobs:
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
           npm install
+          npx @puppeteer/browsers install chrome@stable
           npm run build --if-present
           npm run test --if-present
           popd
@@ -60,4 +61,4 @@ jobs:
           app-name: 'test-functionapp'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5257E2ECF72B4FF09B1C1FC8A890A2B9 }}
+          publish-profile: ${{ secrets.FUNCTION_APP_PUBLISH_PROFILE }}
