@@ -37,9 +37,7 @@ jobs:
           npm run build --if-present
           npm run test --if-present
           popd
-      - name: Set Permissions
-        run: chmod +x ./chrome/win64-135.0.7049.41/chrome-win64/chrome.exe
-        
+          
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
