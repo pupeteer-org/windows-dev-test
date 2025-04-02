@@ -1,6 +1,6 @@
 const { app } = require('@azure/functions');
-//const puppeteer = require('puppeteer-core');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
+//const puppeteer = require('puppeteer');
 
 app.http('scraper', {
     methods: ['GET', 'POST'],
@@ -11,16 +11,16 @@ app.http('scraper', {
         let urlString = "https://pptr.dev";
         const url = new URL(urlString);
         try {
-            const browser = await puppeteer.launch();
+            // const browser = await puppeteer.launch();
             // const browser = await puppeteer.launch({
             //     headless: true,     
             //     args: ['--no-sandbox', '--disable-setuid-sandbox']
             // });
-            // const browser = await puppeteer.launch({
-            //     headless: true,
-            //     executablePath:  `${process.cwd()}/chrome/win64-135.0.7049.41/chrome-win64/chrome.exe`,
-            //     args: ['--no-sandbox', '--disable-setuid-sandbox']
-            // });
+            const browser = await puppeteer.launch({
+                headless: true,
+                executablePath:  `${process.cwd()}/chrome/win64-135.0.7049.41/chrome-win64/chrome.exe`,
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            });
             const page = await browser.newPage()
             await page.goto(url.href, { waitUntil: 'domcontentloaded' })
             const data = await page.evaluate(() => {
