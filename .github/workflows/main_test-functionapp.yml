@@ -33,7 +33,7 @@ jobs:
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
           npm install
-          npx @puppeteer/browsers install chrome@135.0.7049.41
+          # npx @puppeteer/browsers install chrome@135.0.7049.41
           npm run build --if-present
           npm run test --if-present
           popd
