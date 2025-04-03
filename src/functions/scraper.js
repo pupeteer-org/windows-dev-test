@@ -18,7 +18,7 @@ app.http('scraper', {
             // });
             const browser = await puppeteer.launch({
                 headless: true,
-                executablePath:  `${process.cwd()}/chrome/win64-135.0.7049.41/chrome-win64/chrome.exe`,
+                executablePath:  `${process.cwd()}\\chrome\\chrome-win64\\chrome.exe`,
                 args: ['--no-sandbox', '--disable-setuid-sandbox']
             });
             const page = await browser.newPage()
