@@ -23,7 +23,7 @@ app.http('scraper', {
             // });
             const browser = await puppeteer.launch({
                 headless: true,
-                executablePath:  `C:\\home\\site\\wwwroot\\chrome\\chrome-win64\\chrome.exe`,
+                executablePath:  `C:\\home\\site\\wwwroot\\chrome\\chrome-win32\\chrome.exe`,
                 args: ['--no-sandbox', '--disable-setuid-sandbox','--disable-gpu', '--disable-dev-shm-usage']
             });
             const page = await browser.newPage()
