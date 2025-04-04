@@ -16,16 +16,16 @@ app.http('scraper', {
             //     headless: true,     
             //     args: ['--no-sandbox', '--disable-setuid-sandbox']
             // });
-            // const browser = await puppeteer.launch({
-            //     headless: true,
-            //     executablePath:  `${process.cwd()}\\chrome\\chrome-win64\\chrome.exe`,
-            //     args: ['--no-sandbox', '--disable-setuid-sandbox']
-            // });
             const browser = await puppeteer.launch({
                 headless: true,
-                executablePath:  `C:\\home\\site\\wwwroot\\chrome\\chrome-win32\\chrome.exe`,
-                args: ['--no-sandbox', '--disable-setuid-sandbox','--disable-gpu', '--disable-dev-shm-usage']
+                executablePath:  `${process.cwd()}\\chrome\\chrome-win64\\chrome.exe`,
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
             });
+            // const browser = await puppeteer.launch({
+            //     headless: true,
+            //     executablePath:  `C:\\home\\site\\wwwroot\\chrome\\chrome-win64\\chrome.exe`,
+            //     args: ['--no-sandbox', '--disable-setuid-sandbox','--disable-gpu', '--disable-dev-shm-usage']
+            // });
             const page = await browser.newPage()
             await page.goto(url.href, { waitUntil: 'domcontentloaded' })
             const data = await page.evaluate(() => {
