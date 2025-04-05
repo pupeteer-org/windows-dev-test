@@ -6,25 +6,19 @@ app.http('scraper', {
     methods: ['GET', 'POST'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
+        const token = process.env.BROWSERLESS_TOKEN;
         context.log(`Http function processed request for url "${request.url}"`);
 
         let urlString = "https://pptr.dev";
         const url = new URL(urlString);
         try {
-            // const browser = await puppeteer.launch();
-            // const browser = await puppeteer.launch({
-            //     headless: true,     
-            //     args: ['--no-sandbox', '--disable-setuid-sandbox']
-            // });
-            const browser = await puppeteer.launch({
-                headless: true,
-                executablePath:  `${process.cwd()}\\chrome\\chrome-win64\\chrome.exe`,
-                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            const browser = await puppeteer.connect({
+                browserWSEndpoint: `wss://production-sfo.browserless.io?token=${token}`,
             });
             // const browser = await puppeteer.launch({
             //     headless: true,
-            //     executablePath:  `C:\\home\\site\\wwwroot\\chrome\\chrome-win64\\chrome.exe`,
-            //     args: ['--no-sandbox', '--disable-setuid-sandbox','--disable-gpu', '--disable-dev-shm-usage']
+            //     executablePath:  `${process.cwd()}\\chrome\\chrome-win64\\chrome.exe`,
+            //     args: ['--no-sandbox', '--disable-setuid-sandbox']
             // });
             const page = await browser.newPage()
             await page.goto(url.href, { waitUntil: 'domcontentloaded' })
